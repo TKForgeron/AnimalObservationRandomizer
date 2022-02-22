@@ -5,7 +5,7 @@ per dagdeel 3 observaties mogelijk (observatie duurt 20min)
 4 dagen in de week, 10 weken
 
 
-int time_os
+int time_os (out of sight)
 int time_observed
 
 IF time_os > 2min AND time_observed > 2min
