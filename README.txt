@@ -1,0 +1,16 @@
+Wat moet ik doen?
+1. 
+
+Notities
+1. 'Animal' moet iets ingevuld hebben. De volgende notaties zijn toegestaan: 
+        ['KE', 'FA', 'MU', 'NO', 'SW', 'SG', 'SA', 'HA', 'BI', 'KA', 'TU', 'AS', 'TA']
+2. 'Timeslot' moet iets ingevuld hebben. De volgende notaties zijn toegestaan: 
+        ['EM', 'LM', 'EA', 'LA']
+3. 'Time (s)' moet iets ingevuld hebben. De volgende notaties zijn toegestaan: 
+        ['18' alsin 18 minuten en 0 seconden, '15.33' alsin 15 minuten en 33 seconden,
+         '13.' alsin 13 minuten, '.4' alsin 4 seconden, '234.900' alsin 234 minuten en 900 seconden]
+        kortom, gebruik:
+            - alleen getallen om minuten aan te geven, of;
+            - een punt om minuten van seconden te scheiden, waarbij het getal voor de punt minuten zijn en na de punt seconden.
+3. Alle rijen die niet aan bovenstaande punten voldoet, worden niet meegeteld.
+4. Als je een aap niet ziet en daarom doorgaat naar een volgende, maar
