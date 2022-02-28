@@ -240,6 +240,7 @@ new_schedule_list = reorder(new_schedule_list, reordering_index_list)
 for row in new_schedule_list:
     row[1] = row[1].split(".")[1]
 
-print(pd.DataFrame(new_schedule_list, columns=COLUMN_HEADERS))
+print("The first 12 as an example...")
+print(pd.DataFrame(new_schedule_list, columns=COLUMN_HEADERS).head(12))
 
 np.savetxt(f"{CSV_SCHEDULE_NAME}", new_schedule_list, delimiter=";", fmt="% s")
