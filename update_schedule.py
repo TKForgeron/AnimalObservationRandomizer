@@ -144,8 +144,10 @@ def reorder(list, index_list):
     return res
 
 
-# schedule = pd.read_csv("initial_schedule (backup).csv", sep=";")
-schedule = pd.read_csv(f"{CSV_INITIAL_SCHEDULE_NAME}", sep=";")
+try:
+    schedule = pd.read_csv(f"{CSV_INITIAL_SCHEDULE_NAME}", sep=";")
+except:
+    schedule = pd.read_csv("initial_schedule (backup).csv", sep=";")
 true_obs = pd.read_excel(f"{XLSX_TRUE_OBS_NAME}")
 true_obs = true_obs.iloc[:, 2:5]
 true_obs["Animal"] = true_obs["Animal"].apply(invalid_animal_to_na)

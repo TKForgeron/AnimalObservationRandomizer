@@ -1,7 +1,15 @@
-Wat moet ik doen?
-1. 
+Prerequisites:
+	- Windows
 
-Notities
+How do I use this tool?
+Upon first use:
+	1. Double-click 'generate_initial_schedule.exe'
+Daily usage:
+	1. At the start of your day, check 'daily_schedule.csv' to see which animals are to be observed in which timeslot that day
+	2. Within the folder 'STERRE', fill out your excel file: 'true_observations_apenheul.xlsx'
+	3. Double-click 'update_schedule.exe'
+
+Notes
 1. 'Animal' moet iets ingevuld hebben. De volgende notaties zijn toegestaan: 
         ['KE', 'FA', 'MU', 'NO', 'SW', 'SG', 'SA', 'HA', 'BI', 'KA', 'TU', 'AS', 'TA']
 2. 'Timeslot' moet iets ingevuld hebben. De volgende notaties zijn toegestaan: 
@@ -12,5 +20,4 @@ Notities
         kortom, gebruik:
             - alleen getallen om minuten aan te geven, of;
             - een punt om minuten van seconden te scheiden, waarbij het getal voor de punt minuten zijn en na de punt seconden.
-3. Alle rijen die niet aan bovenstaande punten voldoet, worden niet meegeteld.
-4. Als je een aap niet ziet en daarom doorgaat naar een volgende, maar
+3. Alle rijen die niet aan bovenstaande punten voldoet, worden niet meegenomen in 'update_schedule.exe'.
