@@ -1,4 +1,4 @@
-from my_globals import *
+from helpers.sterres_globals import *
 
 
 def generate_combinations(animal_names, timeslots):

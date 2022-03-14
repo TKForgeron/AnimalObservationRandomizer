@@ -1,7 +1,7 @@
 import random
 import numpy as np
 import pandas as pd
-from my_globals import *
+from helpers.sterres_globals import *
 
 
 def invalid_animal_to_na(animal_string):
@@ -133,9 +133,44 @@ def get_indexes_for_timeslots():
 
     return res
 
+def generate_reordering_indexes(schedule, indexes):
+    sorted_schedule = []
+    split_residuals = []
+    for idx in indexes:
+        idx_list = indexes[idx]
+        df = pd.DataFrame(columns=COLUMN_HEADERS)
+        split_length = int(len(idx_list) / NO_OBS_PER_TIMESLOT)
+        split_list = [
+            idx_list[i : len(idx_list) : split_length] for i in range(split_length)
+        ]  # split idx list into lists s.t. there are sublists with length==NO_OBS_PER_TIMESLOT
+        split_residual = [
+            x[NO_OBS_PER_TIMESLOT] for x in split_list if len(x) > NO_OBS_PER_TIMESLOT
+        ]  # cut off any sublist that is 'one-off' due to split_length being a fractal
+        split_list = [
+            x[:NO_OBS_PER_TIMESLOT] for x in split_list
+        ]  # cut off any sublist that is 'one-off' due to split_length being a fractal
+        sorted_schedule.append(split_list)
+        split_residuals += split_residual
+        # sorted_schedule += split_list
+        for i in idx_list[:NO_OBS_PER_TIMESLOT]:
+            x = schedule.iloc[i, :].to_numpy()
+
+    sorted_schedule = np.array(sorted_schedule)
+    reshaped_simpler = np.hstack(sorted_schedule)
+    reordering_index = reshaped_simpler.reshape(
+        len(indexes) * split_length * NO_OBS_PER_TIMESLOT
+    )
+
+
+    reordering_index_list = reordering_index.tolist()
+    reordering_index_list += split_residuals  # add residuals to come to 52 rows s.t. index and schedule_list are equally long
+    # schedule_list = schedule_list[:len(reordering_index_list)] #subtract residuals to come to 48 rows s.t. index and schedule_list are equally long
+    return reordering_index_list
+
 
 def reorder(list, index_list):
     res = []
     for x in index_list:
         res.append(list[x])
     return res
+
