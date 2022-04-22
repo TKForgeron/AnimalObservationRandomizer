@@ -16,15 +16,17 @@ def invalid_timeslot_to_na(timeslot_string):
         timeslot_string = np.nan
     return timeslot_string
 
-
 def min_to_sec(min):
     sec = min
     partial = str(min).split(".", 1)
-    if len(partial) > 1:
-        sec = int(partial[0]) * 60 + int(partial[1])
-    elif partial[0] != "nan":
-        sec = int(partial[0]) * 60
-    elif sec == "nan":
+    try:
+        if len(partial) > 1:
+            sec = int(partial[0]) * 60 + int(partial[1])
+        elif partial[0] != "nan":
+            sec = int(partial[0]) * 60
+        elif sec == "nan":
+            sec = None
+    except:
         sec = None
 
     return sec
@@ -104,12 +106,15 @@ def calc_new_schedule(
         elif (
             new_time_remaining == new_time_remaining
         ):  # check if new_time_remaining is nan
-            print(
-                f"removed {original_schedule[idx_of_lowest_time_rem,:]}, as there is less than 2 minutes of observations time left"
-            )
-            original_schedule = np.delete(
-                original_schedule, idx_of_lowest_time_rem, axis=0
-            )  # delete row if time remaining is lower than 2 minutes
+            # print(
+            #     f"removed {original_schedule[idx_of_lowest_time_rem,:]}, as there is less than 2 minutes of observations time left"
+            # )
+            # original_schedule = np.delete(
+            #     original_schedule, idx_of_lowest_time_rem, axis=0
+            # )  # delete row if time remaining is lower than 2 minutes
+
+            original_schedule[idx_of_lowest_time_rem, -1] = 0
+
 
     new_schedule = pd.DataFrame(original_schedule, columns=COLUMN_HEADERS)
 
@@ -168,9 +173,9 @@ def generate_reordering_indexes(schedule, indexes):
     return reordering_index_list
 
 
-def reorder(list, index_list):
+def reorder(arr, index_list):
     res = []
-    for x in index_list:
-        res.append(list[x])
-    return res
+    for i in index_list:
+        res.append(arr[i])
+    return np.array(res)
 
